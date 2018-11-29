@@ -1,0 +1,10 @@
+打包jar
+mvn  -B -DskipTests=true -Dmaven.repo.local=/tmp/cache clean install
+本机测试
+java -Xmx200m -Dserver.port=9000 -jar ./target/config-server.jar
+
+将xx.jar ，Dockerfile上传至新目录xxx
+创建镜像
+docker build -t lc/dockerspringcloud-config-client:v1 .
+--link 把容器springcloud-server的8761端口软链到新容器, config-server的端口也暴露了
+docker run -d --link springcloud-server:8761 --link springcloud-config-server:8888  --name=springcloud-config-client -p 9000:9000 lc/dockerspringcloud-config-client:v1

@@ -1,0 +1,21 @@
+打包jar
+mvn  -B -DskipTests=true -Dmaven.repo.local=/tmp/cache clean install
+本机测试
+java -Xmx200m -Dserver.port=8888 -jar ./target/config-server.jar
+
+将xx.jar ，Dockerfile上传至新目录xxx
+创建镜像
+docker build -t lc/dockerspringcloud-config-server:v1 .
+--link 把容器springcloud-server的8761端口软链到新容器
+docker run -d --link springcloud-server:8761  --name=springcloud-config-server -p 8888:8888 lc/dockerspringcloud-config-server:v1
+
+
+git更新操作
+/{application}/{profile}[/{label}]
+/{application}-{profile}.yml
+/{label}/{application}-{profile}.yml
+/{application}-{profile}.properties
+/{label}/{application}-{profile}.properties
+
+例如现在应用config-client用的是config-client-dev.properties中的hello变量
+
