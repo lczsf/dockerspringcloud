@@ -12,6 +12,7 @@
     <module>file-service</module>
     <module>config-server</module>
     <module>config-client</module>
+      <module>monitoring</module>
   </modules>
   <packaging>pom</packaging>
   <name>dockerspringcloud</name>
