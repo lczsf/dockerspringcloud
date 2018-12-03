@@ -9,3 +9,9 @@ docker build -t lc/dockerspringcloud-file-service:v1 .
 启动容器#增加主机目录/usr/local/file-service/files挂在到容器/usr/local/files/上
 --link 把容器springcloud-server的8761端口软链到新容器
 docker run -d --link springcloud-server:8761 -v  /usr/local/file-service/files:/usr/local/files/ --name=springcloud-file-service -p 7000:7000 lc/dockerspringcloud-file-service:v1
+
+
+测试url
+远程调用：http://localhost:7000/hello
+远程调用对象参数：http://localhost:7000/getDemoObj
+远程调用失败：http://localhost:7000/what

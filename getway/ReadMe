@@ -1,0 +1,3 @@
+测试url
+http://localhost:8080/config-client/from ：对config-client服务的调用
+http://localhost:8080/config-client/from?token：过滤器测试,关闭config-client进行熔断测试

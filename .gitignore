@@ -1,1 +1,6 @@
 /.idea
+/config-client/target
+/config-server/target
+/file-service/target
+/getway/target
+/monitoring/target

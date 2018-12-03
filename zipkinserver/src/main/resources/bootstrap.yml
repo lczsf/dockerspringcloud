@@ -1,0 +1,19 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: zipkin-server
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://server-1:8000/eureka/,http://server-2:8001/eureka/
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enableSelfPreservation: false
+    renewalPercentThreshold: 0.9
