@@ -2,7 +2,7 @@ FROM java:8
 MAINTAINER lc <JwebSmile@lc.com>
 
 VOLUME /tmp
-CMD [mvn clean package docker:build]
+RUN mvn clean package docker:build
 ADD /target/server.jar app.jar
 RUN bash -c 'touch /app.jar'
 EXPOSE 8000
