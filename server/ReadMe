@@ -8,3 +8,26 @@ java -Xmx200m -Dserver.port=8762 -jar ./target/server.jar
 docker build -t lc/dockerspringcloud-server:v1 .
 启动容器
 docker run -d  --name=springcloud-server -p 8761:8761 lc/dockerspringcloud-server:v1
+
+
+用maven插件打包
+mvn clean package docker:build
+docker run -d -p 8761:8761 lc/eureka-server:0.0.1 启动镜像
+
+指定docker文件以后
+直接用
+mvn clean package docker:build
+docker run -d -p 8000:8000 lc/eureka-server:0.0.2 启动镜像
+
+
+注意：windows的docker，需要用docker虚拟环境的ip ，一般是192.168.99.100
+也可用docker-machine -ls查看
+
+
+执行docker-compose up也可以启动镜像
+
+
+集体启动
+1、在每个项目下执行mvn clean package docker:build
+2、docker-compose up启动
+3、docker-compose scale provider=3 consumer=3 启动多个实例，其他一个

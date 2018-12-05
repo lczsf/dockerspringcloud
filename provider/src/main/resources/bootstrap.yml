@@ -1,0 +1,33 @@
+server:
+  port: 8011
+spring:
+  application:
+    name: provider
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud?characterEncoding=utf-8
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.lc.entity
+eureka:
+  instance:
+#注册自己的ip到服务shangqu
+    prefer-ip-address: true
+  client:
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://user:123@server-1:8000/eureka/,http://user:123@server-1:8001/eureka/
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+  server:
+    eviction-interval-timer-in-ms: 4000
+    enableSelfPreservation: false
+    renewalPercentThreshold: 0.9
+feign:
+   hystrix:
+     enabled: true
+
+
+

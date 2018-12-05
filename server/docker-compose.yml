@@ -1,0 +1,45 @@
+version: '2' #文件使用的是version 2 file
+services:
+  eureka-server: #服务名称
+    image: lc/eureka-server:0.0.2 #指定镜像
+    ports:
+      - "8000:8000"
+  config-server: #服务名称
+    image: lc/config-server:0.0.2 #指定镜像
+    ports:
+      - "8888:8888"
+    links:
+      - eureka-server:server-1
+  provider: #服务名称
+    image: lc/provider:0.0.2 #指定镜像
+    ports:
+      - "8011:8011"
+    links:
+      - eureka-server:server-1
+  gatway: #服务名称
+    image: lc/gateway:0.0.2 #指定镜像
+    ports:
+      - "8080:8080"
+    links:
+      - eureka-server:server-1
+      - config-server:config-line
+  consumer-feign-manual: #服务名称
+    image: lc/consumer-feign-manual:0.0.2 #指定镜像
+    ports:
+      - "8012:8012"
+    links:
+      - eureka-server:server-1
+#  consumer: #服务名称
+#    image: lc/consumer:0.0.2 #指定镜像
+#    ports:
+#      - "8010:8010"
+#    links:
+#      - eureka-server:server-1
+#  config-client: #服务名称
+#    image: lc/config-client:0.0.2 #指定镜像
+#    ports:
+#      - "9000:9000"
+#    links:
+#      - eureka-server:server-1
+#由于compose共用一个隔离网络。ports和links可以去除，此处不简化
+#

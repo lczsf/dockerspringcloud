@@ -2,7 +2,7 @@ package com.lc.fallback;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
+import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,9 +17,9 @@ import java.io.InputStream;
  * Created by lenovo on 2018/11/30.
  */
 @Component
-public class ConfigClientFallback implements FallbackProvider {
+public class ConfigClientFallback implements ZuulFallbackProvider {
 
-    private final Logger logger = LoggerFactory.getLogger(FallbackProvider.class);
+    private final Logger logger = LoggerFactory.getLogger(ConfigClientFallback.class);
 
     //指定要处理的 service。
     @Override
@@ -63,12 +63,4 @@ public class ConfigClientFallback implements FallbackProvider {
         };
     }
 
-    @Override
-    public ClientHttpResponse fallbackResponse(Throwable cause) {
-        if (cause != null && cause.getCause() != null) {
-            String reason = cause.getCause().getMessage();
-            logger.info("Excption {}",reason);
-        }
-        return fallbackResponse();
-    }
 }

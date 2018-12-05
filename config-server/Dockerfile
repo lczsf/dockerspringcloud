@@ -1,10 +1,8 @@
-FROM maven:3.6-jdk-8-alpine
+FROM java:8
 MAINTAINER lc <JwebSmile@lc.com>
 
-COPY . /app
-WORKDIR /app
-RUN mvn  -B -DskipTests=true -Dmaven.repo.local=/tmp/cache clean install
-
-CMD ["java", "-Xmx200m","-jar", "/app/target/config-server.jar"]
-
+VOLUME /tmp
+ADD /target/config-server.jar app.jar
+RUN bash -c 'touch /app.jar'
 EXPOSE 8888
+ENTRYPOINT ["java","-jar","/app.jar"]

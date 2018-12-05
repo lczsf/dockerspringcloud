@@ -14,7 +14,7 @@ eureka:
   client:
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://server-1:8000/eureka/,http://server-2:8001/eureka/
+      defaultZone: http://user:123@server-1:8000/eureka/,http://user:123@server-1:8001/eureka/
     server:
       waitTimeInMsWhenSyncEmpty: 0
   server:
@@ -24,3 +24,7 @@ eureka:
 feign:
    hystrix:
      enabled: true
+zuul:
+  routes:
+    consumer: /user/**
+  ignored-services: aa,bb

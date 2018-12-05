@@ -18,12 +18,12 @@ import java.util.Calendar;
 @RestController
 public class DemoController {
 
-    @Value("${hello}")
-    String from;
+//    @Value("${hello}") 暂时没有新增这个client的配置文件 参考cloud-config
+//    String from;
 
     @RequestMapping(path ="/from", method = RequestMethod.GET)
     public String from() {
-        return this.from;
+        return "";
     }
 
     @RequestMapping(path ="/getDemoObj", method = RequestMethod.GET)

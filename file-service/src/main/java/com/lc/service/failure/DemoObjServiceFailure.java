@@ -1,6 +1,6 @@
 package com.lc.service.failure;
 
-import com.lc.service.DemoObjService;
+import com.lc.service.remote.DemoObjService;
 import org.springframework.stereotype.Component;
 
 /**

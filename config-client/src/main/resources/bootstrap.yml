@@ -13,7 +13,7 @@ spring:
     config:
       label: master
       profile: dev
-      uri: http://localhost:8888/
+      uri: http://admin:123456@config-line:8888/
 
 eureka:
   instance:
@@ -21,10 +21,17 @@ eureka:
   client:
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://server-1:8000/eureka/,http://server-2:8001/eureka/
+      defaultZone: http://user:123@server-1:8000/eureka/,http://user:123@server-1:8001/eureka/
     server:
       waitTimeInMsWhenSyncEmpty: 0
   server:
     eviction-interval-timer-in-ms: 4000
     enableSelfPreservation: false
     renewalPercentThreshold: 0.9
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: 123456

@@ -18,5 +18,10 @@ eureka:
     eviction-interval-timer-in-ms: 4000
     enableSelfPreservation: false
     renewalPercentThreshold: 0.9
-
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: 123
 

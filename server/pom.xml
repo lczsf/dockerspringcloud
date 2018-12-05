@@ -18,7 +18,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -38,6 +42,33 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <finalName>${project.name}</finalName>
+                </configuration>
+            </plugin>
+            <!--docker 插件spotify公司开发，可选fabric8io,bibryam-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <!--<imageName>lc/eureka-server:0.0.1</imageName>&lt;!&ndash;镜像名称&ndash;&gt;-->
+                    <!--<baseImage>java</baseImage>&lt;!&ndash;基础镜像名称&ndash;&gt;-->
+                    <!--<entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>&lt;!&ndash;docker 的ENTRYPOINT&ndash;&gt;-->
+                    <!--<resources>-->
+                        <!--<resource>-->
+                            <!--<targetPath>/</targetPath>-->
+                            <!--<directory>${project.build.directory}</directory>-->
+                            <!--<include>${project.build.finalName}.jar</include>-->
+                        <!--</resource>-->
+                    <!--</resources>-->
+                    <imageName>lc/eureka-server:0.0.2</imageName><!--镜像名称-->
+                    <dockerDirectory>${project.basedir}/</dockerDirectory><!--docker 的ENTRYPOINT-->
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>

@@ -8,13 +8,31 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+#thymeleaf模板引擎引入
+  thymeleaf:
+    cache: false
+    mode: HTML5
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+  datasource:
+    url: jdbc:mysql://localhost:3306/springcloud?characterEncoding=utf-8
+    username: root
+    password: root1234
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.lc.entity
+#shujuku
 eureka:
   instance:
+#注册自己的ip到服务shangqu
     prefer-ip-address: true
   client:
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://server-1:8000/eureka/,http://server-2:8001/eureka/
+      defaultZone: http://user:123@server-1:8000/eureka/,http://user:123@server-2:8001/eureka/
     server:
       waitTimeInMsWhenSyncEmpty: 0
   server:
@@ -24,3 +42,6 @@ eureka:
 feign:
    hystrix:
      enabled: true
+
+
+

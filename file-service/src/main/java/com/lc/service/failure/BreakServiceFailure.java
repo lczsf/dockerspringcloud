@@ -1,6 +1,6 @@
 package com.lc.service.failure;
 
-import com.lc.service.BreakService;
+import com.lc.service.remote.BreakService;
 import org.springframework.stereotype.Component;
 
 /**
